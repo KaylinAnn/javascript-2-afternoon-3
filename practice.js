@@ -29,6 +29,10 @@
 
 // Code Here 
 
+function first (arr, cb){
+  cb(arr[0])
+}
+
 // Do not edit the code below.
 var names = ['Tyler', 'Cahlan', 'Ryan', 'Colt', 'Tyler', 'Blaine', 'Cahlan'];
 
@@ -49,6 +53,10 @@ first(names, function(firstName){
 
 //Code Here
 
+function last(arr, cb){
+  cb(arr[arr.length -1])
+}
+
 // Do not edit the code below.
 last(names, function(lastName){
   console.log('The last name in names is ' + lastName);
@@ -66,6 +74,11 @@ last(names, function(lastName){
 */
 
 //Code Here
+
+function multiply (num1, num2, cb){
+cb(num1 * num2)
+  
+}
 
 // Do not edit the code below.
 multiply(4, 3, function(answer){
@@ -86,6 +99,20 @@ multiply(4, 3, function(answer){
 
 //Code Here 
 
+function contains(arr, name, cb){
+  var found = arr.filter(function(elm){
+    if(name === elm){
+      return true
+    }
+  })
+  if (found.length === 1){
+    cb(true)
+  }else{
+    cb(false)
+  }
+}
+  
+
 // Do not edit the code below.
 contains(names, 'Colt', function(result){
   if(result === true){
@@ -94,6 +121,7 @@ contains(names, 'Colt', function(result){
     console.log('Colt is not in the array');
   }
 });
+
 // Do not edit the code above.
 
 
@@ -106,6 +134,25 @@ contains(names, 'Colt', function(result){
 */
 
 //Code Here
+function uniq(arr, cb){
+  for (var i = arr.length -1;i >= 0 ; i--){
+    var dups = arr.filter(function (el) {
+      if(el===arr[i]){
+        return true
+      }
+    })
+    if(dups.length>1){
+      arr.splice(i,1)
+    }
+
+  }
+  cb(arr)
+}
+
+// if (arr[i] === arr[i-1]){
+//   arr.splice(i,1)
+// }
+// }
 
 // Do not edit the code below.
 uniq(names, function(uniqArr){
@@ -123,7 +170,11 @@ uniq(names, function(uniqArr){
 */
 
 //Code Here 
-
+function each(arr, cb){
+  for (let i = 1; i<= arr.length; i++){
+    cb(arr[i], i)
+  }
+}
 // Do not edit the code below.
 each(names, function(item, indice){
   console.log('The item in the ' + indice + ' position is ' + item)
@@ -135,11 +186,20 @@ each(names, function(item, indice){
 ////////// PROBLEM 7 //////////
 
 /*
-  Write a function called getUserById that takes in three parameters: an array of objects (users), an id and a callback, and searches for the user with a matching id.
+  Write a function called getUserById that takes in three parameters: an array of objects (users),
+  an id and a callback, and searches for the user with a matching id.
   When the correct user object is found, invoke the callback with the user object as an argument.
 */
 
 // Code here
+
+function getUserById(arr, id, cb){
+  for(let i = 1; i <= arr.length; i++){
+    if(arr[i].id === id){
+      return cb(arr[i])
+    }
+  }
+}
 
 // Do not edit the code below.
 var users = [
@@ -166,4 +226,4 @@ var users = [
 getUserById(users, '16t', function(user){
   console.log('The user with the id 16t has the email of ' + user.email + ' the name of ' + user.name + ' and the address of ' + user.address); 
 });
-// Do not edit the code above.
+// Do not edit the code above
